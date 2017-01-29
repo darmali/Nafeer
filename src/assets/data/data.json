@@ -1,0 +1,381 @@
+{
+
+  "schedule": [{
+    "date": "2047-05-17",
+    "groups": [{
+      "time": "8:00 am",
+      "sessions": [{
+        "name": "Breakfast",
+        "timeStart": "8:00 am",
+        "timeEnd": "9:00 am",
+        "location": "Main hallway",
+        "tracks": ["Food"]
+      }]
+    }, {
+      "time": "9:00 am",
+      "sessions": [{
+        "name": "Introduction to Appcamp.io",
+        "location": "Room 2203",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Ellie Elephant"],
+        "timeStart": "9:00 am",
+        "timeEnd": "9:30 am",
+        "tracks": ["Ionic"]
+      }, {
+        "name": "Getting started with Ionic",
+        "location": "Room 2202",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Ted Turtle"],
+        "timeStart": "9:30 am",
+        "timeEnd": "9:45 am",
+        "tracks": ["Ionic"]
+      }, {
+        "name": "Tooling for Ionic",
+        "location": "Room 2201",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Rachel Rabbit"],
+        "timeStart": "9:45 am",
+        "timeEnd": "10:00 am",
+        "tracks": ["Tooling"]
+      }]
+    }, {
+      "time": "10:00 am",
+      "sessions": [{
+        "name": "Migrating to Ionic2",
+        "location": "Room 2201",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Eva Eagle", "Lionel Lion"],
+        "timeStart": "10:00 am",
+        "timeEnd": "10:15 am",
+        "tracks": ["Ionic"]
+      }, {
+        "name": "The evolution of Ionicons",
+        "location": "Room 2202",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Isabella Iguana", "Eva Eagle"],
+        "timeStart": "10:15 am",
+        "timeEnd": "10:30 am",
+        "tracks": ["Design"]
+      }, {
+        "name": "Ionic.io Services",
+        "location": "Room 2202",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Charlie Cheetah"],
+        "timeStart": "10:30 am",
+        "timeEnd": "11:00 am",
+        "tracks": ["Services"]
+      }]
+    }, {
+      "time": "11:00 am",
+      "sessions": [{
+        "name": "Ionic Workshop",
+        "location": "Room 2201",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Karl Kitten", "Lionel Lion"],
+        "timeStart": "11:00 am",
+        "timeEnd": "11:45 am",
+        "tracks": ["Workshop"]
+      }, {
+        "name": "Community Interaction",
+        "location": "Room 2203",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Lionel Lion", "Gino Giraffe"],
+        "timeStart": "11:30 am",
+        "timeEnd": "11:50 am",
+        "tracks": ["Communication"]
+      }, {
+        "name": "Navigation in Ionic",
+        "location": "Room 2203",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Rachel Rabbit", "Eva Eagle"],
+        "timeStart": "11:30 am",
+        "timeEnd": "12:00 pm",
+        "tracks": ["Navigation"]
+      }]
+    }, {
+      "time": "12:00 pm",
+      "sessions": [{
+        "name": "Lunch",
+        "location": "Auditorium",
+        "description": "Come grab lunch with all the Ionic fanatics and talk all things Ionic",
+        "timeStart": "12:00 pm",
+        "timeEnd": "1:00 pm",
+        "tracks": ["Food"]
+      }]
+    }, {
+      "time": "1:00 pm",
+      "sessions": [{
+        "name": "Ionic in the Enterprise",
+        "location": "Room 2201",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Paul Puppy"],
+        "timeStart": "1:00 pm",
+        "timeEnd": "1:15 pm",
+        "tracks": ["Communication"]
+      }, {
+        "name": "Ionic Worldwide",
+        "location": "Room 2201",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Gino Giraffe"],
+        "timeStart": "1:15 pm",
+        "timeEnd": "1:30 pm",
+        "tracks": ["Communication"]
+      }, {
+        "name": "The Ionic package service",
+        "location": "Room 2203",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Molly Mouse", "Burt Bear"],
+        "timeStart": "1:30 pm",
+        "timeEnd": "2:00 pm",
+        "tracks": ["Services"]
+      }]
+    }, {
+      "time": "2:00 pm",
+      "sessions": [{
+        "name": "Push Notifications in Ionic",
+        "location": "Room 2202",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Burt Bear", "Charlie Cheetah"],
+        "timeStart": "2:00 pm",
+        "timeEnd": "2:30 pm",
+        "tracks": ["Services"]
+      }, {
+        "name": "Ionic Documentation",
+        "location": "Room 2202",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Donald Duck"],
+        "timeStart": "2:30 pm",
+        "timeEnd": "2:45 pm",
+        "tracks": ["Documentation"]
+      }, {
+        "name": "UX planning in Ionic",
+        "location": "Room 2203",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Isabella Iguana", "Ellie Elephant"],
+        "timeStart": "2:45 pm",
+        "timeEnd": "3:00 pm",
+        "tracks": ["Design"]
+      }]
+    }, {
+      "time": "3:00",
+      "sessions": [{
+        "name": "Directives in Ionic",
+        "location": "Room 2201",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Ted Turtle"],
+        "timeStart": "3:00 pm",
+        "timeEnd": "3:30 pm",
+        "tracks": ["Angular"]
+      }, {
+        "name": "Mobile States",
+        "location": "Room 2202",
+        "description": "Mobile devices and browsers are now advanced enough that developers can build native-quality mobile apps using open web technologies like HTML5, Javascript, and CSS. In this talk, we’ll provide background on why and how we created Ionic, the design decisions made as we integrated Ionic with Angular, and the performance considerations for mobile platforms that our team had to overcome. We’ll also review new and upcoming Ionic features, and talk about the hidden powers and benefits of combining mobile app development and Angular.",
+        "speakerNames": ["Rachel Rabbit"],
+        "timeStart": "3:30 pm",
+        "timeEnd": "3:45 pm",
+        "tracks": ["Navigation"]
+      }]
+    }]
+  }],
+
+"values": [{
+    "name": "Innovative",
+    "profilePic": "assets/img/ebtkariya copy.png",
+    "twitter": "",
+    "about": "Embed innovation in generating viable new approaches to deliver on customers needs ",
+    "location": "Everywhere",
+    "email": "info@Tamkeentech.sa",
+    "phone": ""
+  },
+  {
+    "name": "Dynamic",
+    "profilePic": "assets/img/dynmic copy.png",
+    "twitter": "",
+    "about": "Be agile and embrace client’s challenges and needs in providing solutions  ",
+    "location": "Everywhere",
+    "email": "info@Tamkeentech.sa",
+    "phone": ""
+  },
+ {
+    "name": "Customer Centric",
+    "profilePic": "assets/img/clint copy.png",
+    "twitter": "",
+    "about": "Commitment to excellence, integrity, and quality in enabling our customers objectives while ensuring the highest levels of  ",
+    "location": "Everywhere",
+    "email": "info@Tamkeentech.sa",
+    "phone": ""
+  },
+  {
+    "name": "Services Driven",
+    "profilePic": "assets/img/amliya copy.png",
+    "twitter": "",
+    "about": "Focus on providing outcome based solutions that aim to propel our customers objectives. ",
+    "location": "Everywhere",
+    "email": "info@Tamkeentech.sa",
+    "phone": ""
+  },
+  {
+    "name": "Valued",
+    "profilePic": "assets/img/takdeer copy.png",
+    "twitter": "",
+    "about": "Be one of the most valued and admired organizations to our customers, our people and society  ",
+    "location": "Everywhere",
+    "email": "info@Tamkeentech.sa",
+    "phone": ""
+  }
+],
+
+"tamkeen": [{
+    "name": "Welcome to Tamkeen",
+    "profilePic": "assets/img/CvuDzizT.jpeg",
+    "twitter": "",
+    "about": "has begun its inception after the decision of the Minister of Labour and Chairman of the Human Resources Development Fund (HRDF) Adel Al Faqih \nThe decision was establish Tamkeen technologies by a partnership between Takamol company for holding buiseness services and Human Resources Development Fund in the middle of 2013\nStrategic Objectives \nInvest in World Class Technology Platform \nEstablish Tmkeen Technologies as World Class IT Service Provider\nAttract, develop and retain top National talent\nInvest in our relationships with customers and l strategic partners\n",
+    "location": "Everywhere",
+    "email": "info@Tamkeentech.sa",
+    "phone": ""
+}],
+
+"services": [{
+    "name": "Technical consultancy",
+    "profilePic": "assets/img/conolt.jpeg",
+    "twitter": "",
+    "about": "Progress to enable services advanced in the field of technology consulting to enable customers to adopt the latest and best software and technology solutions that keep pace with the acceleration of growth and progress in the field of Information Technology through its expertise excellence in cloud computing , infrastructure services SOA (service oriented approach), and management information systems , in addition to enabling the most important business applications such as enterprise resource planning ERP, customer relationship management CRM, and other services and applications that enable offered to provide information technology solutions to its customers with the highest quality and efficiency .\n In order to enable the province to ensure its competitive advantage is working on a permanent basis to enable the development of efficiency and effectiveness in its advisory services .",
+    "location": "Everywhere",
+    "email": "info@Tamkeentech.sa",
+    "phone": ""
+  },
+  {
+    "name": "Systems integration",
+    "profilePic": "assets/img/system.jpg",
+    "twitter": "",
+    "about": "Today is the integrated systems of the most important factors that enhance the operational efficiency of the client by simplifying the conduct of operations , training and transfer of knowledge . Integrated systems are a key foundations to enable services to confirm the action tune applications to ensure the provision of unique service by the customer's need .\n Seeks to enable its customers to increase with the proceeds invested in information technology through its expertise in institutional systems integration solutions by working on the structure of the service infrastructure service SOA, in addition to full automation and partial measures business through business process management BPM. \n Through the application of structure to enable effective service SOA and business process management BPM can provide its customers IT environment strong and flexible to enable them to react quickly and flexible to market changes and business and reduce overall costs through reuse and activation.",
+    "location": "Everywhere",
+    "email": "info@Tamkeentech.sa",
+    "phone": ""
+  },
+  {
+    "name": "Technical support",
+    "profilePic": "assets/img/techsupport-circle.png",
+    "twitter": "",
+    "about": "With the adoption of today's business world on speed, reliability and confidence in business performance comes to provide technical systems reliable and effective and that provide high value to the customer of the most important elements that will ensure the success and effectiveness of information technology in business . \n The empowerment of national cadres working Arabia on enhancing the efficiency and continuity of management and operation of infrastructure for information technology so as to ensure the client application requirements with high quality services .",
+    "location": "Everywhere",
+    "email": "info@Tamkeentech.sa",
+    "phone": ""
+  }
+],
+
+  "speakers": [{
+    "name": "Burt Bear",
+    "profilePic": "assets/img/speakers/bear.jpg",
+    "twitter": "ionicframework",
+    "about": "Burt is a Bear.",
+    "location": "Everywhere",
+    "email": "burt@example.com",
+    "phone": "+1-541-754-3010"
+  }, {
+    "name": "Charlie Cheetah",
+    "profilePic": "assets/img/speakers/cheetah.jpg",
+    "twitter": "ionicframework",
+    "about": "Charlie is a Cheetah.",
+    "location": "Everywhere",
+    "email": "charlie@example.com",
+    "phone": "+1-541-754-3010"
+  }, {
+    "name": "Donald Duck",
+    "profilePic": "assets/img/speakers/duck.jpg",
+    "twitter": "ionicframework",
+    "about": "Donald is a Duck.",
+    "location": "Everywhere",
+    "email": "donald@example.com",
+    "phone": "+1-541-754-3010"
+  }, {
+    "name": "Eva Eagle",
+    "profilePic": "assets/img/speakers/eagle.jpg",
+    "twitter": "ionicframework",
+    "about": "Eva is an Eagle.",
+    "location": "Everywhere",
+    "email": "eva@example.com",
+    "phone": "+1-541-754-3010"
+  }, {
+    "name": "Ellie Elephant",
+    "profilePic": "assets/img/speakers/elephant.jpg",
+    "twitter": "ionicframework",
+    "about": "Ellie is an Elephant.",
+    "location": "Everywhere",
+    "email": "ellie@example.com",
+    "phone": "+1-541-754-3010"
+  }, {
+    "name": "Gino Giraffe",
+    "profilePic": "assets/img/speakers/giraffe.jpg",
+    "twitter": "ionicframework",
+    "about": "Gino is a Giraffe.",
+    "location": "Everywhere",
+    "email": "gino@example.com",
+    "phone": "+1-541-754-3010"
+  }, {
+    "name": "Isabella Iguana",
+    "profilePic": "assets/img/speakers/iguana.jpg",
+    "twitter": "ionicframework",
+    "about": "Isabella is an Iguana.",
+    "location": "Everywhere",
+    "email": "isabella@example.com",
+    "phone": "+1-541-754-3010"
+  }, {
+    "name": "Karl Kitten",
+    "profilePic": "assets/img/speakers/kitten.jpg",
+    "twitter": "ionicframework",
+    "about": "Karl is a Kitten.",
+    "location": "Everywhere",
+    "email": "karl@example.com",
+    "phone": "+1-541-754-3010"
+  }, {
+    "name": "Lionel Lion",
+    "profilePic": "assets/img/speakers/lion.jpg",
+    "twitter": "ionicframework",
+    "about": "Lionel is a Lion.",
+    "location": "Everywhere",
+    "email": "lionel@example.com",
+    "phone": "+1-541-754-3010"
+  }, {
+    "name": "Molly Mouse",
+    "profilePic": "assets/img/speakers/mouse.jpg",
+    "twitter": "ionicframework",
+    "about": "Molly is a Mouse.",
+    "location": "Everywhere",
+    "email": "molly@example.com",
+    "phone": "+1-541-754-3010"
+  }, {
+    "name": "Paul Puppy",
+    "profilePic": "assets/img/speakers/puppy.jpg",
+    "twitter": "ionicframework",
+    "about": "Paul is a Puppy.",
+    "location": "Everywhere",
+    "email": "paul@example.com",
+    "phone": "+1-541-754-3010"
+  }, {
+    "name": "Rachel Rabbit",
+    "profilePic": "assets/img/speakers/rabbit.jpg",
+    "twitter": "ionicframework",
+    "about": "Rachel is a Rabbit.",
+    "location": "Everywhere",
+    "email": "rachel@example.com",
+    "phone": "+1-541-754-3010"
+  }, {
+    "name": "Ted Turtle",
+    "profilePic": "assets/img/speakers/turtle.jpg",
+    "twitter": "ionicframework",
+    "about": "Ted is a Turtle.",
+    "location": "Everywhere",
+    "email": "ted@example.com",
+    "phone": "+1-541-754-3010"
+  }],
+
+
+  "map": [{
+    "name": "Tamkeen Technologies",
+    "lat": 24.708086,
+    "lng": 46.678583,
+    "center": true
+  }]
+
+}

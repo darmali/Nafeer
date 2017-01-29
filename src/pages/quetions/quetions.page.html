@@ -1,0 +1,69 @@
+<ion-header >
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title floating>
+       {{subcategory.title}} 
+      </ion-title>
+
+   <ion-buttons end>
+     <button ion-button icon-only (click)="goHome()">
+       <ion-icon name="home"></ion-icon>
+     </button>
+     
+  </ion-buttons>
+  </ion-navbar>
+ 
+  <ion-toolbar color="secondary">
+        <ion-title>
+        <div class="line-break">Tell us what you need done.</div>
+        </ion-title>
+        
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+
+<ion-card *ngFor="let quetion of quetions" >
+
+ <ion-list *ngIf="quetion.type === 1" class="wrapping-list">
+    <ion-list-header class="header-title" >{{quetion.name}}</ion-list-header>
+    <ion-item *ngFor="let item of quetion.items" >
+      <span item-left class="dot"></span>
+      <ion-label >{{item.name}}</ion-label>
+      <ion-checkbox [(ngModel)]="item.isChecked" color="secondary"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <ion-list radio-group *ngIf="quetion.type === 2" [(ngModel)]="quetion.id">
+    <ion-list-header class="header-title">{{quetion.name}}</ion-list-header>    
+  <ion-item  *ngFor="let item of quetion.items" >
+    <ion-label >  {{item.name}} </ion-label>
+    <ion-radio [(value)]="item.name" [(checked)]= "item.isChecked" color="secondary" ></ion-radio>
+  </ion-item>
+ 
+</ion-list>
+
+ <ion-list *ngIf="quetion.type === 3">
+    <ion-list-header class="header-title">{{quetion.name}}</ion-list-header>    
+  <ion-item >
+    <ion-textarea [(ngModel)]="quetion.value"></ion-textarea>
+  </ion-item>
+ 
+</ion-list>
+
+</ion-card>
+
+<ion-fab top right edge color="secondary">
+    <button ion-fab mini color="secondary" class="fab-button"><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list>
+      <button ion-fab color="secondary" (click)="getImg()"><ion-icon name="ios-image"></ion-icon></button>
+      <button ion-fab color="secondary" (click)="getCamera()"><ion-icon name="ios-camera"></ion-icon></button>    
+    </ion-fab-list>
+</ion-fab>
+<button ion-button block type="submit"  (click)="goToMap()" >Continue ... </button>
+
+
+</ion-content>

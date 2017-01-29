@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Job Requests</ion-title>
+   <ion-buttons end>
+            <button ion-button icon-only (click)="goHome()">
+                <ion-icon name="home"></ion-icon>
+            </button>
+        </ion-buttons>
+  </ion-navbar>
+   <!--<ion-toolbar >
+        <div padding>
+  <ion-segment [(ngModel)]="jobrequest">
+    <ion-segment-button value="quotes">
+      Quotes
+    </ion-segment-button>
+    <ion-segment-button value="jobdetails">
+      Job Details
+    </ion-segment-button>
+  </ion-segment>
+</div>
+        
+  </ion-toolbar>-->
+ 
+</ion-header>
+
+<ion-content>
+  <!--<div [ngSwitch]="jobrequest">
+          <ion-list *ngSwitchCase="'quotes'" >
+          <ion-item *ngFor="let request of requests" (click)="goToProfile(request)" >
+            <ion-avatar item-left>
+                <img [src]="request.img">
+              </ion-avatar>
+            <p> <b style="color: black;">  {{request.name}} </b>  {{request.date}}  </p>
+        
+            <p>
+              <ion-icon name="ios-star" ></ion-icon>
+              <ion-icon name="ios-star" ></ion-icon>
+              <ion-icon name="ios-star" ></ion-icon>
+              <ion-icon name="ios-star" ></ion-icon>
+              <ion-icon name="ios-star" ></ion-icon>
+            </p>
+            <b style="color: black;  text-align: right;" item-right>  {{request.reqid}} </b>
+              
+          
+          
+            <button ion-button clear item-right >
+              <ion-icon name="ios-arrow-forward" ></ion-icon>
+            </button>
+          </ion-item>
+
+        </ion-list>
+        <ion-list  *ngSwitchCase="'jobdetails'">
+      <a ion-item>
+        <ion-label>table list</ion-label>
+      </a>
+   </ion-list>
+  </div>-->
+  <ion-list  >
+          <ion-item *ngFor="let request of requests" >
+            <ion-avatar item-left>
+                <img [src]="request.img">
+              </ion-avatar>
+            <p> <b style="color: black;">  {{request.name}} </b>  {{request.date}}  </p>
+        
+            <p>
+              <ion-icon name="ios-star" ></ion-icon>
+              <ion-icon name="ios-star" ></ion-icon>
+              <ion-icon name="ios-star" ></ion-icon>
+              <ion-icon name="ios-star" ></ion-icon>
+              <ion-icon name="ios-star" ></ion-icon>
+            </p>
+            <b style="color: black;  text-align: right;" item-right>  {{request.reqid}} </b>
+              
+          
+          
+            <button ion-button clear item-right >
+              <ion-icon name="ios-arrow-forward" ></ion-icon>
+            </button>
+          </ion-item>
+
+        </ion-list>
+</ion-content>

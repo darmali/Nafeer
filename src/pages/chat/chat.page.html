@@ -1,0 +1,47 @@
+<ion-header>
+  
+  <ion-navbar color="primary">
+   
+    <ion-item item-borderless  style="background-color: transparent;border-bottom: 0;">
+      <ion-avatar item-left class="menu-avatar">
+        <img [src]="item.img">
+      </ion-avatar>
+      <h2>{{item.name}}</h2>
+    </ion-item>    
+   <ion-buttons end>
+            <button ion-button icon-only (click)="goHome()">
+                <ion-icon name="home"></ion-icon>
+            </button>
+        </ion-buttons>
+  </ion-navbar>
+  
+ 
+</ion-header>
+
+<ion-content padding>
+ 
+  <ion-list>
+  <ion-item *ngFor="let message of messagesList" >
+    <h2>{{message}}</h2>
+  </ion-item>
+
+</ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    
+   <!--<button> send </button>-->
+    <ion-row>
+      <ion-col width-80>
+        <ion-input ion-textarea type="text" [(ngModel)]="message" placeholder="Type a message"   ></ion-input>
+      </ion-col>
+      <ion-col width-10>
+        
+       <button ion-button clear item-right *ngIf="message.trim().length > 0" (click)="setMessage()">
+      <ion-icon name="ios-send" ></ion-icon>
+    </button>
+        
+      </ion-col>   
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

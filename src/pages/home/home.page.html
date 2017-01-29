@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+    
+    <!--<ion-segment color="light" [(ngModel)]="segment" (ionChange)="updateSchedule()">
+      <ion-segment-button value="all">
+        All
+      </ion-segment-button>
+      <ion-segment-button value="favorites">
+        Favorites
+      </ion-segment-button>
+    </ion-segment>-->
+
+   <ion-buttons end>
+     <button ion-button icon-only (click)="goHome()">
+       <ion-icon name="home"></ion-icon>
+     </button>
+  </ion-buttons>
+  </ion-navbar>
+ 
+  <ion-toolbar no-border-top >
+    <ion-searchbar 
+                   [(ngModel)]="queryText"
+                   (ionInput)="search()"
+                   placeholder="Search">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="card-background-page" padding>
+
+<ion-list *ngIf="tab === 0">
+ <ion-card *ngFor="let cat of categories" (click)="goSubCategory(cat)">
+   
+    <img [src]="cat.img"/>
+    <div class="card-title">{{cat.title}}</div>
+    <!--<div class="card-subtitle">28 Listings</div>-->
+   
+  </ion-card>
+</ion-list>
+
+
+  <ion-list *ngIf="tab === 1" >
+     <ion-list-header style="text-align: center;">All categories</ion-list-header>  
+    <button ion-item *ngFor="let item of subcategories" (click)="itemTapped($event, item)">
+      {{item.title}}
+    </button>
+  </ion-list>
+
+</ion-content>

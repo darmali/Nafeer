@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Choose Profile</ion-title>
+   <ion-buttons end>
+            <button ion-button icon-only (click)="goHome()">
+                <ion-icon name="home"></ion-icon>
+            </button>
+        </ion-buttons>
+  </ion-navbar>
+  
+</ion-header>
+<ion-content padding="false" style="top:0px !important;"   >
+
+<ion-slides pager>
+
+  <ion-slide  *ngFor="let tasker of taskers" class="side-menu-left side-menu-gradient">
+    
+        
+       
+      <div class="profile-image" >
+        <img [src]="tasker.img" style="display: block; width: 100px; height: 100px; margin-left: auto; margin-right: auto;">
+      </div>
+      <h3 style="color: ghostwhite;">{{tasker.name}}</h3>
+       <ion-row>
+          <ion-col width-30>
+            <button ion-button block type="submit"  (click)="goToProfile(tasker)" >Review</button>
+          </ion-col>
+          <ion-col width-30>
+            <button ion-button block type="submit"  (click)="goHome()" >Hire</button>
+          </ion-col>
+        </ion-row>
+
+   
+     
+  </ion-slide>
+
+
+</ion-slides>
+
+
+
+</ion-content>

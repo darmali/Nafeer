@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-navbar>
+    <!--<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>-->
+    <ion-title>Contact US</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="map-page card-background-page">
+   
+  <div style="height: 40%; width: 100%" #mapCanvas id="map_canvas"></div>
+  <div style="height: 60%; width: 100%" >
+  
+<ion-card>
+
+  <!--<div style="height: 40%; width: 100%" #mapCanvas id="map_canvas"></div>-->
+  <!--<ion-fab right top>
+    <button ion-fab>
+      <ion-icon name="pin"></ion-icon>
+    </button>
+  </ion-fab>-->
+  <ion-item>
+    <ion-icon name="ios-pin-outline" item-left large></ion-icon>
+    <h2>Saudi Arabia</h2>
+    <p>Alolaya street 
+Alakariya Plaza / gate E</p>
+  </ion-item>
+
+  <ion-item>
+    <ion-icon name="ios-mail-outline" item-left large></ion-icon>
+    <h2>P.O Box</h2>
+    <p> 7235 Unit No. 26 Riyadh 12244 - 2392</p>
+  </ion-item>
+
+  <ion-item>
+    <ion-icon name="ios-call-outline" item-left large ></ion-icon>
+    <h2>Telephone</h2>
+    <p>+966920023600</p>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="ios-call-outline" item-left large ></ion-icon>
+    <h2>Fax</h2>
+    <p>+966112896582</p>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="ios-at-outline" item-left large ></ion-icon>
+    <h2>Email</h2>
+    <p>info@tamkeen.it</p>
+  </ion-item>
+
+  <!--<ion-item>
+    <span item-left>18 min</span>
+    <span item-left>(2.6 mi)</span>
+    <button ion-button icon-left clear item-right>
+      <ion-icon name="navigate"></ion-icon>
+      Start
+    </button>
+  </ion-item>-->
+
+</ion-card>
+
+  </div>
+  <ion-fab bottom right #fab>
+    <button ion-fab><ion-icon name="ios-call"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab color="vimeo" (click)="close('https://vimeo.com/173090952')" ><ion-icon name="logo-vimeo"></ion-icon></button>
+      <button ion-fab color="google" (click)="close('https://plus.google.com/u/0/')"><ion-icon name="logo-googleplus"></ion-icon></button>
+      <button ion-fab color="twitter" (click)="close('https://twitter.com/TamkeenTech')"><ion-icon name="logo-twitter"></ion-icon></button>
+      <button ion-fab color="facebook" (click)="close('https://www.facebook.com/TamkeenTech/?fref=ts')"><ion-icon name="logo-facebook"></ion-icon></button>
+     
+        <a href="tel:+966920023600" class="button button-positive">
+                <button ion-fab color="facebook">
+        <ion-icon name="ios-call"></ion-icon>       
+        </button>
+        </a>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

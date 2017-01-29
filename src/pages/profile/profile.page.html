@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{tasker.name}} profile</ion-title>
+   <ion-buttons end>
+            <button ion-button icon-only (click)="goHome()">
+                <ion-icon name="home"></ion-icon>
+            </button>
+        </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar >
+        <div padding>
+  <ion-segment [(ngModel)]="profilestatus">
+    <ion-segment-button value="profile">
+      Profile
+    </ion-segment-button>
+    <ion-segment-button value="review">
+      Review
+    </ion-segment-button>
+  </ion-segment>
+</div>
+        
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+<div [ngSwitch]="profilestatus">
+      <div id="content" *ngSwitchCase="'profile'" >
+        <div id="profile-info">
+          <img id="profile-image" [src]="tasker.img">
+          <h3 id="profile-name">{{tasker.name}}</h3>
+          <p> {{tasker.title}} </p>
+          <span id="profile-description">
+            Job Descriptions
+          </span>
+        </div>
+        <ion-list>
+          <ion-list-header >Details</ion-list-header>
+          <ion-item >
+            <h2 style="color: dodgerblue">Company Name</h2>
+            <p>X-factor</p>
+          </ion-item>
+        </ion-list>
+        </div>
+        <div *ngSwitchCase="'review'" >
+          review
+        </div>
+
+</div>
+
+
+</ion-content>

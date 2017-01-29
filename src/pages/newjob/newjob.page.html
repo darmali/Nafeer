@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>New Job</ion-title>
+   <ion-buttons end>
+            <button ion-button icon-only (click)="goHome()">
+                <ion-icon name="home"></ion-icon>
+            </button>
+        </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar no-border-top >
+    <ion-searchbar 
+                   [(ngModel)]="queryText"
+                   (ionInput)="search()"
+                   placeholder="Search">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list >
+     <ion-list-header style="text-align: center;">All categories</ion-list-header>  
+    <button ion-item *ngFor="let item of subcategories" (click)="itemTapped($event, item)">
+      {{item.title}}
+    </button>
+  </ion-list>
+</ion-content>

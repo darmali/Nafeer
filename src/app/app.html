@@ -1,0 +1,35 @@
+<ion-menu [content]="content" >
+
+  <ion-content padding="false" style="top:0px !important;" class="side-menu-left side-menu-gradient-test" >
+
+    <div class="spacer" style="width: 254px; height: 15px;"></div>
+    <button class="side-menu-item" style="margin-left: 70px;">
+      <div class="profile-image" >
+        <img src="assets/img/face.jpeg" style="display: block; width: 100px; height: 100px; margin-left: auto; margin-right: auto;">
+      </div>
+      <h3 style="color: ghostwhite;">Waleed</h3>
+    </button>
+    <div class="spacer" style="width: 254px; height: 15px;"></div>
+
+    
+
+    <ion-list>
+      <button class="item-icon-left  side-menu-item" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+         <ion-row>
+           <ion-col width-20>
+             <ion-avatar item-left>
+                <ion-icon [name]="p.icon" ></ion-icon>
+             </ion-avatar>
+           </ion-col>
+           <ion-col width-70>
+              {{p.title}}
+           </ion-col>
+         </ion-row>
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
