@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 
 import { NavController,NavParams,LoadingController } from 'ionic-angular';
 import { SubCategories,Quetions } from '../page';
+
 import { NafeerApi } from '../../shared/shared';
 import _ from 'lodash';
 
@@ -12,15 +13,18 @@ import _ from 'lodash';
   templateUrl: 'home.page.html'
 })
 export class Home {
+
+  
   dayIndex = 0;
   queryText = '';
   segment = 'all';
   tab = 0;
   categories:any = [];
   subcategories:any = [];
+
   
   constructor(public loadingController: LoadingController,public navCtrl: NavController , public navParams: NavParams, public nafeerApi: NafeerApi) {
-    
+     
   }
   ionViewDidLoad() {
     

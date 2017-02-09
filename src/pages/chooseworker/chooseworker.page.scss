@@ -52,7 +52,7 @@ $SIDEMENU_TRANSPARENCY: rgba(255,255,255,0.4);
 	background: linear-gradient(to bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
 }
 
-.profile-image {
+.profile-image-tasker {
 	img {
 		border-radius: 60%;
 		margin: 13px;
@@ -62,6 +62,13 @@ $SIDEMENU_TRANSPARENCY: rgba(255,255,255,0.4);
 		box-shadow: 0px 0px 142px -37px rgba(0,0,0,0.75);
 	}
 	
+}
+.connection{
+	padding-top: 35px;
+	font-size: 40px;
+}
+.media-size{
+	font-size: 40px;
 }
 
 }

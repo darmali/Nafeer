@@ -12,6 +12,7 @@ export class Profile {
 
   tasker:any;
   profilestatus='profile';
+  reviewers:any;
 
   constructor(public loadingController: LoadingController,public navCtrl: NavController , public navParams: NavParams,public nafeerApi: NafeerApi) {
     this.tasker = this.navParams.data;
@@ -24,7 +25,7 @@ export class Profile {
 
     loader.present().then(() => {
       // this.category = this.navParams.data;
-      // this.taskers =  this.nafeerApi.getTaskers();
+      this.reviewers =  this.nafeerApi.getReviewers();
       // .filter((question) => {return (question.id === this.subcategory.questionid );});
       loader.dismiss();
 

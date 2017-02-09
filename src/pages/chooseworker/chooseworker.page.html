@@ -16,20 +16,48 @@
 
 <ion-slides pager>
 
-  <ion-slide  *ngFor="let tasker of taskers" class="side-menu-left side-menu-gradient">
-    
-        
-       
-      <div class="profile-image" >
-        <img [src]="tasker.img" style="display: block; width: 100px; height: 100px; margin-left: auto; margin-right: auto;">
-      </div>
+  <ion-slide  *ngFor="let tasker of taskers" >
+      <ion-header>
+
+  <ion-navbar>
+    <ion-title>{{subcat.title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+      <ion-row>
+          <ion-col width-30>
+            <div class="connection" >
+            <!--<button ion-button block clear (click)="goToProfile(tasker)" >
+              <ion-icon name="call" class="media-size"></ion-icon>
+            </button>-->
+            <a href="tel:+966920023600" class="button">
+                <button ion-fab color="facebook">
+                  <ion-icon class="media-size" name="call"></ion-icon>       
+                </button>
+              </a>
+
+            </div>
+          </ion-col>
+          <ion-col width-30>
+             <div class="profile-image-tasker" >
+              <img [src]="tasker.img" style="display: block; width: 100px; height: 100px; margin-left: auto; margin-right: auto;">
+            </div>
+          </ion-col>
+          <ion-col width-30>
+            <div class="connection" >
+            <button ion-button block clear (click)="goToChat(tasker)" >
+              <ion-icon name="chatbubbles" class="media-size"></ion-icon>
+            </button>
+            </div>
+          </ion-col>
+      </ion-row>
       <h3 style="color: ghostwhite;">{{tasker.name}}</h3>
        <ion-row>
           <ion-col width-30>
-            <button ion-button block type="submit"  (click)="goToProfile(tasker)" >Review</button>
+            <button ion-button block (click)="goToProfile(tasker)" >Review</button>
           </ion-col>
           <ion-col width-30>
-            <button ion-button block type="submit"  (click)="goHome()" >Hire</button>
+            <button ion-button block (click)="goHome()" >Hire</button>
           </ion-col>
         </ion-row>
 

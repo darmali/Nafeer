@@ -3,7 +3,8 @@
 $font-path: "../assets/fonts";
 
 @import "ionic.globals";
-
+@import url(http://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+@import url(http://fonts.googleapis.com/earlyaccess/lateef.css); 
 
 // Shared Variables
 // --------------------------------------------------
@@ -24,12 +25,12 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #0097c5,
-  secondary:  #9B6AC2,
+  primary:    #414656,
+  secondary:  #F75176,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222,
-  background-menu: #272c30
+  footer: #fff,
 );
 
 

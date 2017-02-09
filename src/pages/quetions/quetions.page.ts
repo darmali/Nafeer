@@ -106,19 +106,17 @@ export class Quetions {
         markerLabel: "My Location" 
       };
       console.log(this.map);
-      this.navCtrl.push(MapPage,this.map);
+      this.navCtrl.push(MapPage,{ map:this.map, subcat:this.subcategory });
       loader.dismiss();
       
       }).catch((error) => {
         var errormessage='Error getting location', error;
-        console.log(errormessage);
+        console.log(error);
+        //console.log(errormessage);
         this.showAlert(errormessage);
         loader.dismiss();
         
       });
-      // this.getLocation();
-      
-      
 
     });
   }
@@ -156,7 +154,7 @@ export class Quetions {
    showAlert(message) {
     let alert = this.alertCtrl.create({
       title: 'Error!',
-      subTitle: message,
+      subTitle: 'Please make sure that your device has network connectivity',
       buttons: ['OK']
     });
     alert.present();

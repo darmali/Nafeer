@@ -28,7 +28,7 @@
 <ion-content padding>
 
 <div [ngSwitch]="profilestatus">
-      <div id="content" *ngSwitchCase="'profile'" >
+      <!--<div id="content" *ngSwitchCase="'profile'" >
         <div id="profile-info">
           <img id="profile-image" [src]="tasker.img">
           <h3 id="profile-name">{{tasker.name}}</h3>
@@ -44,9 +44,103 @@
             <p>X-factor</p>
           </ion-item>
         </ion-list>
-        </div>
+        </div>-->
+        <div class="list card" *ngSwitchCase="'profile'" >
+        <ion-item class="profile-item">
+          <ion-slides pager>
+            <ion-slide >
+              <div class="fix-div">
+              <div>
+                <img  id="profile-image" [src]="tasker.img">
+              </div>
+              <h2 class="profile-name dark">{{tasker.name}}</h2>
+              <div class="profile-info">{{tasker.title}}</div>
+              </div>
+            </ion-slide>
+            <ion-slide class="slide-background">
+              
+              <div class="fix-div">
+              
+                  about my self 
+                
+              </div>
+              
+            </ion-slide>
+          </ion-slides>
+        </ion-item>
+        
+        <p>
+            I am grass cutter.I have been working for over 30 years on the industry and I guarantee agreat service just look at my reviews. 
+        </p>
+        <ion-list-header>
+          Details
+        </ion-list-header>
+             
+        <ion-item class="profile-item">
+         <ion-row>
+           <ion-col width-20>
+              <ion-icon name="ios-home-outline" ></ion-icon>
+           </ion-col>
+           <ion-col width-70>
+             <p>
+              Tamkeentech
+             </p>
+           </ion-col>
+         </ion-row>
+        </ion-item>
+         <ion-item class="profile-item">
+         <ion-row>
+           <ion-col width-20>
+              <ion-icon name="ios-cash-outline" ></ion-icon>
+           </ion-col>
+           <ion-col width-70>
+             <p>
+              100 SAR per Hour
+             </p>
+           </ion-col>
+         </ion-row>
+        </ion-item>
+        <ion-item class="profile-item">
+         <ion-row>
+           <ion-col width-20>
+              <ion-icon name="ios-time-outline" ></ion-icon>
+           </ion-col>
+           <ion-col width-70>
+             <p>
+              4:00 PM - 11:00 PM
+             </p>
+           </ion-col>
+         </ion-row>
+        </ion-item>
+
+      </div>
         <div *ngSwitchCase="'review'" >
-          review
+               <ion-fab bottom right edge color="secondary">
+                <button ion-fab mini color="secondary" class="fab-button"><ion-icon name="add"></ion-icon></button>
+            </ion-fab>
+              <ion-list>
+              <ion-item *ngFor="let reviewer of reviewers" >
+                <ion-avatar item-left>
+                    <img [src]="reviewer.img">
+                  </ion-avatar>
+                <h2>{{reviewer.name}}</h2>
+                <p>
+                  <ion-icon name="ios-star" ></ion-icon>
+                  <ion-icon name="ios-star" ></ion-icon>
+                  <ion-icon name="ios-star" ></ion-icon>
+                  <ion-icon name="ios-star" ></ion-icon>
+                  <ion-icon name="ios-star" ></ion-icon>
+                  </p>
+                  <p class="truncate">{{reviewer.mesg}}</p>
+              
+                <button ion-button clear item-right >
+                  <ion-icon name="ios-arrow-forward" ></ion-icon>
+                </button>
+              </ion-item>
+
+            </ion-list>
+
+           
         </div>
 
 </div>

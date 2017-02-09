@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { NavController,NavParams,LoadingController } from 'ionic-angular';
-import { Home,Profile } from '../page';
+import { Home,Profile,ChatPage } from '../page';
 import { NafeerApi } from '../../shared/shared';
 
 
@@ -13,7 +13,10 @@ export class ChooseWorker {
 
  taskers:any;
  sliderOptions: any;
+ subcat:any;
+ inbox=[];
   constructor(public loadingController: LoadingController,public navCtrl: NavController , public navParams: NavParams,public nafeerApi: NafeerApi) {
+    this.subcat = this.navParams.data;
      this.sliderOptions = {
       pager: true
     };
@@ -25,9 +28,8 @@ export class ChooseWorker {
     });
 
     loader.present().then(() => {
-      // this.category = this.navParams.data;
       this.taskers =  this.nafeerApi.getTaskers();
-      // .filter((question) => {return (question.id === this.subcategory.questionid );});
+      this.inbox =  this.nafeerApi.getInbox();
       loader.dismiss();
 
     });
@@ -35,12 +37,27 @@ export class ChooseWorker {
   }
 
   goHome(){
-    this.navCtrl.setRoot(Home);
+     let loader = this.loadingController.create({
+      content: "Please wait...",
+      duration: 3000
+    });
+
+    loader.present().then(() => {
+      this.navCtrl.setRoot(Home);
+      loader.dismiss();
+
+    });
   }
 
   goToProfile(tasker)
   {
     this.navCtrl.push(Profile,tasker);
+  }
+  goToChat(tasker)
+  {
+    let chat;
+    chat = this.inbox.filter(a => a.id == tasker.id)[0];
+    this.navCtrl.push(ChatPage,chat);
   }
 
 }

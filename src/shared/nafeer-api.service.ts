@@ -120,6 +120,11 @@ export class NafeerApi {
       
      
     ];
+
+     reviewers = [
+      { id:1,name: 'joe kiven',mesg:'I am so glad to know this guy',img: 'assets/img/46ce2bc282f5a62c5b6be5fd4430df9c.jpg' },
+      { id:2,name: 'Suraj Ha',mesg:'He is good in his job',img: 'assets/img/Arnold_Faces_profile2.jpg' },
+    ];
     requests = [
       { id:1,name: 'joe kiven',img: 'assets/img/46ce2bc282f5a62c5b6be5fd4430df9c.jpg',date:'4 jan',reqid:'TMK-111 21' },
       { id:2,name: 'Suraj Ha',img: 'assets/img/Arnold_Faces_profile2.jpg' ,date:'4 jan',reqid:'TMK-111 983'},
@@ -201,6 +206,10 @@ export class NafeerApi {
       return data.map;
     });
   }
+    getReviewers()
+    {
+      return this.reviewers;
+    }
     getItems(){
         return this.items;
     }
@@ -259,4 +268,62 @@ export class NafeerApi {
     refreshCurrentTourney(){
         return this.getTournamentData(this.currentTourney.tournament.id, true); 
     }
+
+
+
 }
+
+export class User {
+  name: string;
+  email: string;
+ 
+  constructor(name: string, email: string) {
+    this.name = name;
+    this.email = email;
+  }
+}
+
+
+@Injectable()
+export class AuthService {
+  currentUser: User;
+ 
+  public login(credentials) {
+    if (credentials.email === null || credentials.password === null) {
+      return Observable.throw("Please insert credentials");
+    } else {
+      return Observable.create(observer => {
+        // At this point make a request to your backend to make a real check!
+        let access = (credentials.password === "123" && credentials.email === "waleed");
+        this.currentUser = new User('Simon', 'saimon@devdactic.com');
+        observer.next(access);
+        observer.complete();
+      });
+    }
+  }
+ 
+  public register(credentials) {
+    if (credentials.email === null || credentials.password === null) {
+      return Observable.throw("Please insert credentials");
+    } else {
+      // At this point store the credentials to your backend!
+      return Observable.create(observer => {
+        observer.next(true);
+        observer.complete();
+      });
+    }
+  }
+ 
+  public getUserInfo() : User {
+    return this.currentUser;
+  }
+ 
+  public logout() {
+    return Observable.create(observer => {
+      this.currentUser = null;
+      observer.next(true);
+      observer.complete();
+    });
+  }
+}
+

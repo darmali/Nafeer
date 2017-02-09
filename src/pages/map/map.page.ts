@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavParams , LoadingController , NavController} from 'ionic-angular';
+import { NavParams , LoadingController , NavController,ModalController} from 'ionic-angular';
 //import { GOOGLE_MAPS_DIRECTIVES } from 'angular2-google-maps/core';
-import { ChooseWorker,Home } from '../page';
+import { ChooseWorker,Home
+  // ,AutocompletePage
+ } from '../page';
 
 import { NafeerApi } from '../../shared/shared';
 declare var window: any;
@@ -15,9 +17,14 @@ declare var window: any;
 export class MapPage {
 
   map: any;
+  address:any;
 
-  constructor(public loadingController: LoadingController,public navCtrl: NavController ,public navParams: NavParams, public nafeerApi: NafeerApi) {
-      this.map = this.navParams.data;
+  constructor(public loadingController: LoadingController,public navCtrl: NavController ,public navParams: NavParams, public nafeerApi: NafeerApi, private modalCtrl: ModalController) {
+      this.map = this.navParams.get('map');
+      //this.map = this.navParams.get('subcat');
+       this.address = {
+            place: ''
+        };
 
   }
 
@@ -34,13 +41,21 @@ export class MapPage {
     // };
 
   }
+  // showAddressModal () {
+  //   let modal = this.modalCtrl.create(AutocompletePage);
+  //   let me = this;
+  //   modal.onDidDismiss(data => {
+  //     this.address.place = data;
+  //   });
+  //   modal.present();
+  // }
 
   getDirections() { 
    window.location = `geo:${this.map.lat},${this.map.lng};u=35`; 
   }
   getWorker()
   {
-    this.navCtrl.push(ChooseWorker);
+    this.navCtrl.push(ChooseWorker,this.navParams.get('subcat'));
   }
   goHome(){
     this.navCtrl.setRoot(Home);

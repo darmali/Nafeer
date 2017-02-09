@@ -21,6 +21,28 @@
             <ion-icon name="navigate"></ion-icon>
         </button>
     </ion-fab>-->
+    <!--<ion-list>
+    <ion-item>
+      <ion-input (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
+    </ion-item>
+  </ion-list>-->
+  <ion-card>
+  <ion-card-header>
+    What neighbourhood is your job in? 
+  </ion-card-header>
+  <ion-card-content>
+    <ion-row>
+    <ion-col width-20>
+    <ion-icon ios="ios-lock" md="md-lock" style="font-size: 60px"></ion-icon>
+    </ion-col>
+    <ion-col width-70>
+    <p>
+        this location is private and will never be shared with anyone. We only use it to find local service providers in your neighbourhood.
+    </p>
+    </ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-card>
   
     <sebm-google-map id="map" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom">
         <sebm-google-map-marker [latitude]="map.lat" [longitude]="map.lng">

@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header >
   <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -33,13 +33,18 @@
 <ion-content class="card-background-page" padding>
 
 <ion-list *ngIf="tab === 0">
- <ion-card *ngFor="let cat of categories" (click)="goSubCategory(cat)">
-   
-    <img [src]="cat.img"/>
-    <div class="card-title">{{cat.title}}</div>
-    <!--<div class="card-subtitle">28 Listings</div>-->
-   
-  </ion-card>
+  <div *ngFor="let cat of categories">
+    <ion-card (click)="goSubCategory(cat)" >
+      <!--<ion-card-header>
+        Card Header
+      </ion-card-header>-->
+      <!--<ion-card-content>-->
+        <img [src]="cat.img" class="img-card"/>
+        <div class="card-title" >{{cat.title}}</div>
+        <!--<div class="card-subtitle">28 Listings</div>-->
+      <!--</ion-card-content>-->
+      </ion-card>
+  </div>
 </ion-list>
 
 

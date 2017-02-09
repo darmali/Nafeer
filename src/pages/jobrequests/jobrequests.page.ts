@@ -13,6 +13,7 @@ import { NafeerApi } from '../../shared/shared';
 export class JobRequests {
   requests:any;
   jobrequest:any;
+  jobrequests='pending';
   constructor(public loadingController: LoadingController,public navCtrl: NavController , public navParams: NavParams,public nafeerApi: NafeerApi) {
     
   }

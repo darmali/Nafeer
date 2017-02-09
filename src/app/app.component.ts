@@ -1,12 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-
+import {TranslateService} from 'ng2-translate';
 import { NewJob,JobRequests,Inbox,RateUs,Settings,Login } from '../pages/page';
 
 @Component({
   selector: 'menu-page',
-  templateUrl: 'app.html'
+  // templateUrl: 'app.html'
+  template: '<ion-nav [root]="rootPage"></ion-nav>'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -15,7 +16,7 @@ export class MyApp {
 
   pages: Array<{title: string,icon: string, component: any}>;
 
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform,translate: TranslateService) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -26,6 +27,16 @@ export class MyApp {
       { title: 'Rate Us',icon: 'ios-star', component: RateUs },
       { title: 'Settings',icon: 'ios-settings', component: Settings },
     ];
+    // this language will be used as a fallback when a translation isn't found in the current language
+    translate.setDefaultLang('ar');
+
+     // the lang to use, if the lang isn't available, it will use the current loader to get them
+    translate.use('ar');
+
+    translate.get('HELLO', {value: 'Dayana'}).subscribe((res: string) => {
+      console.log(res);
+      //=> 'Hello Dayana'
+      });
 
   }
 
@@ -34,7 +45,7 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
-      Splashscreen.hide();
+      Splashscreen.show();
     });
   }
 
