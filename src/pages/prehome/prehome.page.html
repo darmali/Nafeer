@@ -1,0 +1,44 @@
+<ion-menu [content]="content">
+
+  <ion-content padding="false" style="top:0px !important;" class="side-menu-left side-menu-gradient-test" >
+
+    <div class="spacer" style="width: 254px; height: 15px;"></div>
+    <button class="side-menu-item" style="margin-left: 70px;">
+      <div class="profile-image" >
+        <img src="assets/img/221418_4632838832138_1869255064_o.jpg" style="display: block; width: 100px; height: 100px; margin-left: auto; margin-right: auto;">
+      </div>
+      <h3 style="color: ghostwhite;font-family:'Droid Arabic Naskh', serif; font-weight: bold;">وليد محمد</h3>
+      <!--<div>  {{ 'HELLO' | translate }} </div>-->
+      <!--<div  translate [translateParams]="{value: 'Dayana'}">HELLO</div>-->
+      <!--<div  style="font-family:'Droid Arabic Naskh', serif; font-weight: bold;" >والرها ونصيبين . </div>-->
+      
+    </button>
+    <div class="spacer" style="width: 254px; height: 15px;"></div>
+
+    
+
+    <ion-list>
+      <button class="item-icon-left  side-menu-item" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+         <ion-row>
+           <ion-col width-20>
+              <ion-icon [name]="p.icon" ></ion-icon>
+           </ion-col>
+           <ion-col width-70>
+              {{p.title}}
+           </ion-col>
+         </ion-row>
+      </button>
+    </ion-list>
+
+    
+    
+  </ion-content>
+  <ion-footer button ion-button class="submit-btn" clear full (click)="logout()" color="footer">
+    <ion-icon name="ios-log-out" > Log Out </ion-icon>
+  </ion-footer>
+
+</ion-menu>
+
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
