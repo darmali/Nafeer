@@ -115,11 +115,11 @@
 
       </div>
         <div *ngSwitchCase="'review'" >
-               <ion-fab bottom right edge color="secondary">
+               <ion-fab bottom right color="secondary"  (click)="addReview()">
                 <button ion-fab mini color="secondary" class="fab-button"><ion-icon name="add"></ion-icon></button>
             </ion-fab>
               <ion-list>
-              <ion-item *ngFor="let reviewer of reviewers" >
+              <ion-item *ngFor="let reviewer of reviewers" dir="rtl">
                 <ion-avatar item-left>
                     <img [src]="reviewer.img">
                   </ion-avatar>

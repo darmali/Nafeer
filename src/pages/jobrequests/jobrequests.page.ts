@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 
 import { NavController,NavParams,LoadingController } from 'ionic-angular';
-import { Home,Profile } from '../page';
+import { Home,RequestDetails } from '../page';
 import { NafeerApi } from '../../shared/shared';
 
 
@@ -24,11 +24,8 @@ export class JobRequests {
     });
 
     loader.present().then(() => {
-      // this.category = this.navParams.data;
       this.requests =  this.nafeerApi.getRequests();
-      // .filter((question) => {return (question.id === this.subcategory.questionid );});
       loader.dismiss();
-
     });
     
   }
@@ -37,8 +34,8 @@ export class JobRequests {
     this.navCtrl.setRoot(Home);
   }
 
-  goToProfile()
+  goToRequest(request)
   {
-    this.navCtrl.push(Profile);
+    this.navCtrl.push(RequestDetails);
   }
 }

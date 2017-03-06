@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController,NavParams,LoadingController } from 'ionic-angular';
+import { NavController,NavParams,LoadingController,AlertController } from 'ionic-angular';
 import { Home } from '../page';
 import { NafeerApi } from '../../shared/shared';
 
@@ -14,7 +14,7 @@ export class Profile {
   profilestatus='profile';
   reviewers:any;
 
-  constructor(public loadingController: LoadingController,public navCtrl: NavController , public navParams: NavParams,public nafeerApi: NafeerApi) {
+  constructor(private alertCtrl:AlertController, public loadingController: LoadingController,public navCtrl: NavController , public navParams: NavParams,public nafeerApi: NafeerApi) {
     this.tasker = this.navParams.data;
   }
  ionViewDidLoad() {
@@ -36,5 +36,50 @@ export class Profile {
   goHome(){
     this.navCtrl.setRoot(Home);
   }
+
+  addReview() {
+  let alert = this.alertCtrl.create({
+    title: 'Add Review',
+    inputs: [
+      {
+        name: 'review',
+        type: 'range',
+        value: '0',
+        id: 'input-range'       
+
+      },
+      {
+        name: 'comment',
+        placeholder: 'Review',
+      }
+    ],
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: data => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Ok',
+        handler: data => {
+
+          console.log('any way I would like to add comment');
+          console.log(data.review);
+          // if (User.isValid(data.username, data.password)) {
+          //   // logged in!
+          // } else {
+          //   // invalid login
+          //   return false;
+          // }
+          
+        }
+      }
+    ],
+    cssClass:'profile-page'
+  });
+  alert.present();
+}
 
 }

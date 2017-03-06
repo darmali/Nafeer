@@ -18,11 +18,11 @@
  
 </ion-header>
 
-<ion-content padding>
+<ion-content padding  class="has-header has-footer content-stable" >
  
   <ion-list>
-  <ion-item *ngFor="let message of messagesList" >
-    <h2>{{message}}</h2>
+  <ion-item *ngFor="let message of messagesList" class="messages" >
+    <h3>{{message}}</h3>
   </ion-item>
 
 </ion-list>

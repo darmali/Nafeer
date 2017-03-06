@@ -15,4 +15,5 @@ export * from './chat/chat.page';
 export * from './chooseworker/chooseworker.page';
 export * from './mymap-page/mymap-page';
 export * from './register/register.page';
+export * from './requestdetails/requestdetails.page';
 export * from './Autocomplete/Autocomplete.page';
