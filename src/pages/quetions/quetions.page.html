@@ -28,7 +28,7 @@
 
 <ion-card *ngFor="let quetion of quetions" >
 
- <ion-list *ngIf="quetion.type === 1" class="wrapping-list">
+ <ion-list *ngIf="quetion.tasktype_id === 1" class="wrapping-list">
     <ion-list-header class="header-title" >{{quetion.name}}</ion-list-header>
     <ion-item *ngFor="let item of quetion.items" >
       <span item-left class="dot"></span>
@@ -37,7 +37,7 @@
     </ion-item>
   </ion-list>
 
-  <ion-list radio-group *ngIf="quetion.type === 2" [(ngModel)]="quetion.id">
+  <ion-list radio-group *ngIf="quetion.tasktype_id === 2" [(ngModel)]="quetion.id">
     <ion-list-header class="header-title">{{quetion.name}}</ion-list-header>    
   <ion-item  *ngFor="let item of quetion.items" >
     <ion-label >  {{item.name}} </ion-label>
@@ -46,7 +46,7 @@
  
 </ion-list>
 
- <ion-list *ngIf="quetion.type === 3">
+ <ion-list *ngIf="quetion.tasktype_id === 3">
     <ion-list-header class="header-title">{{quetion.name}}</ion-list-header>    
   <ion-item >
     <ion-textarea [(ngModel)]="quetion.value"></ion-textarea>

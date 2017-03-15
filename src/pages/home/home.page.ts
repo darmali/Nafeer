@@ -1,10 +1,11 @@
 import { Component} from '@angular/core';
 
 import { NavController,NavParams,LoadingController } from 'ionic-angular';
+import {Http} from '@angular/http';
 import { SubCategories,Quetions } from '../page';
 
 import { NafeerApi } from '../../shared/shared';
-import _ from 'lodash';
+
 
 
 
@@ -23,7 +24,7 @@ export class Home {
   subcategories:any = [];
 
   
-  constructor(public loadingController: LoadingController,public navCtrl: NavController , public navParams: NavParams, public nafeerApi: NafeerApi) {
+  constructor(public loadingController: LoadingController,public navCtrl: NavController , public navParams: NavParams, public nafeerApi: NafeerApi,private http:Http) {
      
   }
   ionViewDidLoad() {
@@ -47,18 +48,16 @@ export class Home {
     this.tab = 1;
     let queryTextLower = this.queryText.toLowerCase();
 
-    let filteredsubcategories = [];
-    
-    _.forEach(this.nafeerApi.getSubCategories(), td => {
-      
-      let category = _.filter(td,t => td.title.toLowerCase().includes(queryTextLower) );
-      
-      if (category.length) {
-        filteredsubcategories.push(td);
-      }
+
+    let loader = this.loadingController.create({
+      content: 'Loading data...'
     });
 
-    this.subcategories = filteredsubcategories;
+    loader.present().then(() => {
+      this.subcategories = this.nafeerApi.searchsubcategories(queryTextLower);
+      loader.dismiss();
+
+    });
   }
   goSubCategory(category){ 
     this.navCtrl.push(SubCategories,category);
@@ -66,6 +65,14 @@ export class Home {
   itemTapped(event, item) {
        this.navCtrl.push(Quetions,item);
 
+  }
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
   }
 
 }

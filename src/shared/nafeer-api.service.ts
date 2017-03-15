@@ -6,32 +6,13 @@ import 'rxjs/add/observable/of';
 import 'rxjs';
 import { Observable } from 'rxjs/Observable';
 
+import _ from 'lodash';
+
 @Injectable()
 export class NafeerApi {
-    private baseUrl = 'https://elite-schedule-app-i2-64179.firebaseio.com';
-    currentTourney: any = {};
-    private tourneyData = {};
+    private baseUrl = 'http://127.0.0.1:8000';
     data:any;
-    subcategories = [
-      { id:1,title: 'Plumbing Installation and Repair',categoryid:1 , questionid: 1},
-      { id:2,title: 'Item 2',categoryid:1 , questionid: 1},
-      { id:3,title: 'Item 3',categoryid:1 , questionid: 1},
-      { id:4,title: 'Item 4',categoryid:2 , questionid: 1},
-      { id:5,title: 'Item 5',categoryid:2 , questionid: 1},
-      { id:6,title: 'Item 6',categoryid:2 , questionid: 1},
-      { id:7,title: 'Item 7',categoryid:3 , questionid: 1},
-      { id:8,title: 'Item 8',categoryid:3 , questionid: 1},
-      { id:9,title: 'Item 9',categoryid:3 , questionid: 1},
-      { id:10,title: 'Item 10',categoryid:4 , questionid: 1},
-      { id:11,title: 'Item 11',categoryid:4 , questionid: 1},
-      { id:12,title: 'Item 12',categoryid:4 , questionid: 1},
-      { id:13,title: 'Item 13',categoryid:5 , questionid: 1},
-      { id:14,title: 'Item 14',categoryid:5 , questionid: 1},
-      { id:15,title: 'Item 15',categoryid:5 , questionid: 1},
-      { id:16,title: 'Item 16',categoryid:6 , questionid: 1},
-      { id:17,title: 'Item 17',categoryid:6 , questionid: 1},
-      { id:18,title: 'Item 18',categoryid:6 , questionid: 1},
-    ];
+
 
     questions = [
       { id:1,name: 'Plumbing Installation and Repair'},
@@ -101,15 +82,6 @@ export class NafeerApi {
      
     ];
 
-    categories = [
-      { id:1,title: 'Service Plus',img: 'assets/img/plus.jpg' },
-      { id:2,title: 'Cleaning',img: 'assets/img/cleaning.jpg' },
-      { id:3,title: 'Air Conditioning',img: 'assets/img/Slider_-AC-Repair.png' },
-      { id:4,title: 'Home',img: 'assets/img/elite-handyman2.jpg' },
-      { id:5,title: 'Events',img: 'assets/img/evens.jpg' },
-      { id:6,title: 'Learning',img: 'assets/img/teacher_2549217b.jpg' },
-      
-    ];
     taskers = [
       { id:1,name: 'joe kiven',title:'Cleaner',img: 'assets/img/46ce2bc282f5a62c5b6be5fd4430df9c.jpg' },
       { id:2,name: 'Suraj Ha',title:'Teacher',img: 'assets/img/Arnold_Faces_profile2.jpg' },
@@ -155,47 +127,13 @@ export class NafeerApi {
     if (this.data) {
       return Observable.of(this.data);
     } else {
-      return this.http.get('assets/data/data.json')
+      return this.http.get(`${this.baseUrl}/Categories`)
         .map(this.processData);
     }
   }
 
    processData(data) {
-    // just some good 'ol JS fun with objects and arrays
-    // build up the data by linking speakers to sessions
     this.data = data.json();
-
-    this.data.tracks = [];
-
-    // loop through each day in the schedule
-    this.data.schedule.forEach(day => {
-      // loop through each timeline group in the day
-      day.groups.forEach(group => {
-        // loop through each session in the timeline group
-        group.sessions.forEach(session => {
-          session.speakers = [];
-          if (session.speakerNames) {
-            session.speakerNames.forEach(speakerName => {
-              let speaker = this.data.speakers.find(s => s.name === speakerName);
-              if (speaker) {
-                session.speakers.push(speaker);
-                speaker.sessions = speaker.sessions || [];
-                speaker.sessions.push(session);
-              }
-            });
-          }
-
-          if (session.tracks) {
-            session.tracks.forEach(track => {
-              if (this.data.tracks.indexOf(track) < 0) {
-                this.data.tracks.push(track);
-              }
-            });
-          }
-        });
-      });
-    });
-
     return this.data;
   }
 
@@ -230,47 +168,52 @@ export class NafeerApi {
         return this.questions;
     }
     getSubCategories(){
-        return this.subcategories;
-    }
-    getCategories(){
-        return this.categories;
-    }
+        let list = [];
+        this.http.get( this.baseUrl + "/SubCategories").subscribe(data => {
 
-
-    getTournaments(){
-        return new Promise(resolve => {
-            this.http.get(`${this.baseUrl}/tournaments.json`)
-                .subscribe(res => resolve(res.json()));
-        });
-    }
-
-    getTournamentData(tourneyId, forceRefresh: boolean = false) : Observable<any> {
-        if (!forceRefresh && this.tourneyData[tourneyId]) {
-            this.currentTourney = this.tourneyData[tourneyId];
-            console.log('**no need to make HTTP call, just return the data'); 
-            return Observable.of(this.currentTourney);
-        }
-
-        // don't have data yet
-        console.log('**about to make HTTP call');
-        return this.http.get(`${this.baseUrl}/tournaments-data/${tourneyId}.json`)
-            .map(response => {
-                this.tourneyData[tourneyId] = response.json();
-                this.currentTourney = this.tourneyData[tourneyId];
-                return this.currentTourney;
+            _.forEach(data.json().data, td => {
+                list.push(td);
             });
+        });
+
+        return list;
     }
+    searchsubcategories(subcat)
+    {
+        let list = [];
+        this.http.get( this.baseUrl + "/SubCategories").subscribe(data => {
 
-    getCurrentTourney(){
-        return this.currentTourney;
+            _.forEach(data.json().data, td => {
+                let category = _.filter(td,t => td.title.toLowerCase().includes(subcat) );
+                if (category.length) {
+                    list.push(td);
+                }
+            });
+        });
+
+        return list;
     }
-
-    refreshCurrentTourney(){
-        return this.getTournamentData(this.currentTourney.tournament.id, true); 
+    getCategories() {
+        let list = [];
+        this.http.get( this.baseUrl + "/Categories").subscribe(data => {
+            _.forEach(data.json().data, td => {
+                list.push(td);
+            });
+        });
+        return list;
     }
-
-
-
+    getTask(subcat) {
+        let list = [];
+        this.http.get( this.baseUrl + "/Tasks").subscribe(data => {
+            _.forEach(data.json().data, td => {
+                if(td.subcategory_id == subcat)
+                {
+                    list.push(td);
+                }
+            });
+        });
+        return list;
+    }
 }
 
 export class User {

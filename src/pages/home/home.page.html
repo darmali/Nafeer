@@ -32,6 +32,10 @@
 
 <ion-content class="card-background-page" padding>
 
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
 <ion-list *ngIf="tab === 0">
   <div *ngFor="let cat of categories">
     <ion-card (click)="goSubCategory(cat)" >

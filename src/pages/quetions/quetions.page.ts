@@ -33,7 +33,8 @@ export class Quetions {
 
     loader.present().then(() => {
 
-      this.quetions =  this.nafeerApi.getPages();
+      this.quetions =  this.nafeerApi.getTask(this.subcategory.id);
+
       // .filter((question) => {return (question.id === this.subcategory.questionid );});
       
       loader.dismiss();
