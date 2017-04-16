@@ -15,12 +15,16 @@
 
 <ion-content padding>
 
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
   <ion-list>
   <ion-item *ngFor="let tasker of taskers" (click)="goToProfile(tasker)">
     <ion-avatar item-left>
-        <img [src]="tasker.img">
+        <img [src]="tasker.image">
       </ion-avatar>
-    <h2>{{tasker.name}}</h2>
+    <h2>{{tasker.first_name}}</h2>
     <p>{{tasker.title}}</p>
     <p>
       <ion-icon name="ios-star" ></ion-icon>

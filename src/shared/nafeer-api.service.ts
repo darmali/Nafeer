@@ -1,82 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Http /*, Response*/ } from '@angular/http';
+import {Http, Headers, RequestOptions,Response}  from '@angular/http';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import 'rxjs';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
+
 
 import _ from 'lodash';
 
 @Injectable()
 export class NafeerApi {
-    private baseUrl = 'http://127.0.0.1:8000';
+    private baseUrl = 'http://127.0.0.1:8000/api/v1';
     data:any;
-
-
-    questions = [
-      { id:1,name: 'Plumbing Installation and Repair'},
-    ];
-    pages = [
-      { id:1,name: 'What kind of work do you need?',type: 1,value:'',
-      items:[
-            { id:1,name: 'Install', isChecked:false, pageid: 1},
-            { id:2,name: 'Repair', isChecked:false, pageid: 1},
-            { id:3,name: 'Removal', isChecked:false, pageid: 1},
-            { id:4,name: 'Other (Please specify in your description)', isChecked:false, pageid: 1},
-            { id:5,name: 'No problem, I just need an installation', isChecked:false, pageid: 1},
-            ], questionid: 1,},
-      { id:2,name: 'What problem(s) are you having?',type: 1,value:'',
-      items:[
-            { id:6,name: 'Burst', isChecked:false, pageid: 1},
-            { id:7,name: 'Leak', isChecked:false, pageid: 1},
-            { id:8,name: 'Clogged pipe/drain', isChecked:false, pageid: 1},
-            { id:9,name: 'Noisy pipe(s)', isChecked:false, pageid: 1},
-            { id:10,name: 'Unpleasant odour from drain(s)', isChecked:false, pageid: 1},
-            { id:11,name: 'Low pressure', isChecked:false, pageid: 1},
-            { id:12,name: 'Fixture not draining or flushing', isChecked:false, pageid: 1},
-            { id:13,name: 'Other (Please specify in your description)', isChecked:false, pageid: 1},
-      ], questionid: 1},
-      { id:3,name: 'Which part of the plumbing system requires work?',type: 1,value:'',
-      items:[
-            { id:14,name: 'Pipes and drains', isChecked:false, pageid: 1},
-            { id:15,name: 'Sink/Basin', isChecked:false, pageid: 1},
-            { id:16,name: 'Shower', isChecked:false, pageid: 1},
-            { id:17,name: 'Bathtub', isChecked:false, pageid: 1},
-            { id:18,name: 'Toilet', isChecked:false, pageid: 1},
-            { id:19,name: 'Water Filter', isChecked:false, pageid: 1},
-            { id:20,name: 'Other (Please specify in your description)', isChecked:false, pageid: 1},
-      ], questionid: 1},
-      { id:4,name: 'Which room requires plumbing work?',type: 1,value:'',
-      items:[
-            { id:21,name: 'Bathroom', isChecked:false, pageid: 1},
-            { id:22,name: 'Kitchen', isChecked:false, pageid: 1},
-            { id:23,name: 'Entire building', isChecked:false, pageid: 1},
-            { id:24,name: 'Other (Please specify in your description)', isChecked:false, pageid: 1},
-      ], questionid: 1},
-      { id:5,name: 'What type of property do you have?',type: 1,value:'',
-      items:[
-            { id:25,name: 'Single/Double-Storey House', isChecked:false, pageid: 1},
-            { id:26,name: 'Apartment/Condo', isChecked:false, pageid: 1},
-            { id:27,name: 'Commercial', isChecked:false, pageid: 1},
-      ], questionid: 1},
-      { id:6,name: 'Will you be providing the parts required?',type: 2,value:'',
-      items:[
-            { id:28,name: 'Yes, I will be providing the parts', isChecked:false, pageid: 1},
-            { id:29,name: 'No. I need the plumber to provide it.', isChecked:false, pageid: 1},
-      ], questionid: 1},
-      { id:7,name: 'When do you need it done?',type: 2,value:'',
-      items:[
-            { id:30,name: 'This week', isChecked:false, pageid: 1},
-            { id:31,name: 'Next week', isChecked:false, pageid: 1},
-            { id:32,name: 'Within 30 days', isChecked:false, pageid: 1},
-      ], questionid: 1},
-      { id:8,name: 'Any other details?',type: 3,value:'',
-      items:[
-
-      ], questionid: 1},
-    ];
-
+    currentUser: User;
     items = [
     
      
@@ -156,22 +93,27 @@ export class NafeerApi {
       return this.inbox;
     }
     getRequests(){
-        return this.requests;
+        return this.http.get( this.baseUrl + "/Request?token="+this.currentUser.token).map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
-    getTaskers(){
-        return this.taskers;
-    }
-    getPages(){
-        return this.pages;
-    }
-    getQuestions(){
-        return this.questions;
-    }
+
+
     getSubCategories(){
         let list = [];
         this.http.get( this.baseUrl + "/SubCategories").subscribe(data => {
 
             _.forEach(data.json().data, td => {
+                list.push(td);
+            });
+        });
+
+        return list;
+    }
+    searchLocation(location){
+        let list = [];
+        this.http.get("https://maps.google.com/maps/api/geocode/json?address="+location).subscribe(data => {
+
+            _.forEach(data.json().results, td => {
                 list.push(td);
             });
         });
@@ -194,17 +136,21 @@ export class NafeerApi {
         return list;
     }
     getCategories() {
-        let list = [];
-        this.http.get( this.baseUrl + "/Categories").subscribe(data => {
-            _.forEach(data.json().data, td => {
-                list.push(td);
-            });
-        });
-        return list;
+        return this.http.get( this.baseUrl + "/Categories").map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
+    getTaskers() {
+        return this.http.get( this.baseUrl + "/Taskers").map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
+    getAvalibaleTaskers(subcat_id) {
+        return this.http.get( this.baseUrl + "/TaskerSubCategories/"+subcat_id).map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
+
     getTask(subcat) {
         let list = [];
-        this.http.get( this.baseUrl + "/Tasks").subscribe(data => {
+        this.http.get( this.baseUrl + "/Tasks?token="+this.currentUser.token).subscribe(data => {
             _.forEach(data.json().data, td => {
                 if(td.subcategory_id == subcat)
                 {
@@ -214,48 +160,152 @@ export class NafeerApi {
         });
         return list;
     }
+
+    getReviews(tasker) {
+        return this.http.get( this.baseUrl + "/GetReview/"+tasker+"?token="+this.currentUser.token).map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
+
+    createRequest(request)
+    {
+        let body = JSON.stringify(request);
+        console.log(body);
+        let headers = new Headers(
+            {'Content-Type': 'application/json'}
+        );
+        let options = new RequestOptions({
+            headers: headers
+        });
+        return this.http
+            .post(this.baseUrl+'/Request/Create?token='+this.currentUser.token, body,options)
+            .map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
+
+    getCurrentUser(token) {
+        return this.http.get( this.baseUrl + "/CurrentCustomer?token="+token).map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
+
 }
 
 export class User {
-  name: string;
-  email: string;
- 
-  constructor(name: string, email: string) {
-    this.name = name;
-    this.email = email;
+
+    first_name: string;
+    last_name: string;
+    phone: string;
+    email: string;
+    token: string;
+    usertype_id:number;
+    image:string;
+    id: number;
+
+
+
+  constructor(id:number,first_name: string,last_name: string,phone: string, email: string,usertype_id:number) {
+      this.id = id;
+      this.first_name = first_name;
+      this.last_name = last_name;
+      this.phone = phone;
+      this.email = email;
+      this.usertype_id = usertype_id;
   }
+}
+
+export class ItemsDesc {
+
+    id: number;
+    task_id: number;
+    value: boolean;
+
+
+    constructor(id:number,task_id:number,value: boolean) {
+        this.id = id;
+        this.value = value;
+        this.task_id = task_id;
+    }
 }
 
 
 @Injectable()
 export class AuthService {
   currentUser: User;
+  private baseUrl = 'http://127.0.0.1:8000/api/v1';
+    constructor(public http: Http) { }
+
+    base
  
   public login(credentials) {
+
+
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
-      return Observable.create(observer => {
-        // At this point make a request to your backend to make a real check!
-        let access = (credentials.password === "123" && credentials.email === "waleed");
-        this.currentUser = new User('Simon', 'saimon@devdactic.com');
-        observer.next(access);
-        observer.complete();
-      });
+        console.log("I am trying to login ");
+
+        let body = new FormData();
+        body.append('email', credentials.email);
+        body.append('password', credentials.password);
+        return this.http
+            .post(this.baseUrl+'/User/Login', body)
+            .map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+
+        // return Observable.create(observer => {
+        //     // At this point make a request to your backend to make a real check!
+        //
+        //     let access = (credentials.password === "123" && credentials.email === "waleed");
+        //     this.currentUser = new User('Simon', 'saimon@devdactic.com','');
+        //     observer.next(access);
+        //     observer.complete();
+        // });
+
+
     }
   }
  
   public register(credentials) {
-    if (credentials.email === null || credentials.password === null) {
+
+      if (credentials.email === null || credentials.password === null || credentials.first_name === null
+          || credentials.last_name === null || credentials.phone === null
+      ) {
       return Observable.throw("Please insert credentials");
     } else {
+
+          let body = new FormData();
+          body.append('email', credentials.email);
+          body.append('password', credentials.password);
+          body.append('first_name', credentials.first_name);
+          body.append('last_name', credentials.last_name);
+          body.append('phone', credentials.phone);
+          // body.append('image', 'http://lorempixel.com/250/250/?16727');
+          let headers = new Headers({
+              'Content-Type': 'application/json'
+          });
+          let options = new RequestOptions({
+              headers: headers
+          });
+          return this.http
+              .post(this.baseUrl+'/User/Register/Customer', body)
+              .map((res:Response) => res.json());
+
       // At this point store the credentials to your backend!
-      return Observable.create(observer => {
-        observer.next(true);
-        observer.complete();
-      });
+      // return Observable.create(observer => {
+      //   observer.next(true);
+      //   observer.complete();
+      // });
     }
   }
+    getTests(){
+
+        let body = new FormData();
+        body.append('email', 'waleed123@123.com');
+        body.append('password', 'secret');
+        return this.http
+            .post(this.baseUrl+'/User/Login', body)
+            .map((res:Response) => res.json())
+            .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
  
   public getUserInfo() : User {
     return this.currentUser;
@@ -269,4 +319,3 @@ export class AuthService {
     });
   }
 }
-

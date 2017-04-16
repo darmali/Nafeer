@@ -33,28 +33,48 @@
     <ion-item *ngFor="let item of quetion.items" >
       <span item-left class="dot"></span>
       <ion-label >{{item.name}}</ion-label>
-      <ion-checkbox [(ngModel)]="item.isChecked" color="secondary"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="item.ischecked" color="secondary"></ion-checkbox>
     </ion-item>
   </ion-list>
 
-  <ion-list radio-group *ngIf="quetion.tasktype_id === 2" [(ngModel)]="quetion.id">
+  <ion-list radio-group *ngIf="quetion.tasktype_id === 2" [(ngModel)]="quetion.value">
     <ion-list-header class="header-title">{{quetion.name}}</ion-list-header>    
   <ion-item  *ngFor="let item of quetion.items" >
     <ion-label >  {{item.name}} </ion-label>
-    <ion-radio [(value)]="item.name" [(checked)]= "item.isChecked" color="secondary" ></ion-radio>
+    <ion-radio [(value)]="item.name" [(checked)]= "item.ischecked" color="secondary" ></ion-radio>
   </ion-item>
  
 </ion-list>
 
- <ion-list *ngIf="quetion.tasktype_id === 3">
-    <ion-list-header class="header-title">{{quetion.name}}</ion-list-header>    
-  <ion-item >
-    <ion-textarea [(ngModel)]="quetion.value"></ion-textarea>
-  </ion-item>
- 
-</ion-list>
+ <!--<ion-list *ngIf="quetion.tasktype_id === 3">-->
+    <!--<ion-list-header class="header-title">{{quetion.name}}</ion-list-header>-->
+  <!--<ion-item >-->
+    <!--<ion-textarea [(ngModel)]="quetion.value"></ion-textarea>-->
+  <!--</ion-item>-->
+
+<!--</ion-list>-->
 
 </ion-card>
+
+
+
+    <!--<ion-list >-->
+        <!--<ion-list-header class="header-title">test</ion-list-header>-->
+        <!--<ion-item   >-->
+            <!--<ion-label >  test1 </ion-label>-->
+            <!--<ion-radio value="test 1" [(checked)]= "item1" color="secondary" ></ion-radio>-->
+        <!--</ion-item>-->
+        <!--<ion-item  >-->
+            <!--<span item-left class="dot"></span>-->
+            <!--<ion-label >1</ion-label>-->
+            <!--<ion-checkbox [(ngModel)]="item2" color="secondary"></ion-checkbox>-->
+
+        <!--</ion-item>-->
+
+    <!--</ion-list>-->
+
+
+
 
 <ion-fab top right edge color="secondary">
     <button ion-fab mini color="secondary" class="fab-button"><ion-icon name="add"></ion-icon></button>

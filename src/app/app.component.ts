@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { StatusBar, Splashscreen,SQLite } from 'ionic-native';
 import {TranslateService} from 'ng2-translate';
 import { NewJob,JobRequests,Inbox,RateUs,Settings,Login } from '../pages/page';
 
@@ -19,6 +19,22 @@ export class MyApp {
   constructor(public platform: Platform,translate: TranslateService) {
     this.initializeApp();
 
+    platform.ready().then(() => {
+      StatusBar.styleDefault();
+      let db = new SQLite();
+      db.openDatabase({
+        name: "data.db",
+        location: "default"
+      }).then(() => {
+        db.executeSql("CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT, first_name TEXT, last_name TEXT,phone TEXT,email TEXT,usertype INTEGER,token TEXT)", {}).then((data) => {
+          console.log("TABLE CREATED: ", data);
+        }, (error) => {
+          console.error("Unable to execute sql", error);
+        })
+      }, (error) => {
+        console.error("Unable to open database", error);
+      });
+    });
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'New Job',icon: 'ios-add-circle', component: NewJob },
@@ -34,7 +50,7 @@ export class MyApp {
     translate.use('ar');
 
     translate.get('HELLO', {value: 'Dayana'}).subscribe((res: string) => {
-      console.log(res);
+      // console.log(res);
       //=> 'Hello Dayana'
       });
 

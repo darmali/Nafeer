@@ -16,12 +16,16 @@
     <ion-segment-button value="pending">
       Pending
     </ion-segment-button>
-    <ion-segment-button value="quoted">
-      Quoted
-    </ion-segment-button>
+
     <ion-segment-button value="booked">
       Booked
     </ion-segment-button>
+
+
+    <ion-segment-button value="finshed">
+      Finshed
+    </ion-segment-button>
+
   </ion-segment>
 </div>
         
@@ -62,81 +66,80 @@
    </ion-list>
   </div>-->
   <div [ngSwitch]="jobrequests">
-  <ion-list  *ngSwitchCase="'pending'">
-          <ion-item *ngFor="let request of requests" >
-            <ion-avatar item-left>
-                <img [src]="request.img">
-              </ion-avatar>
-            <p> <b style="color: black;">  {{request.name}} </b>  {{request.date}}  </p>
-        
-            <p>
-              <ion-icon name="ios-star" ></ion-icon>
-              <ion-icon name="ios-star" ></ion-icon>
-              <ion-icon name="ios-star" ></ion-icon>
-              <ion-icon name="ios-star" ></ion-icon>
-              <ion-icon name="ios-star" ></ion-icon>
-            </p>
-            <b style="color: black;  text-align: right;" item-right>  {{request.reqid}} </b>
-              
-          
-          
-            <button ion-button clear item-right (click)="goToRequest(request)" >
-              <ion-icon name="ios-arrow-forward" ></ion-icon>
-            </button>
-          </ion-item>
+        <ion-list  *ngSwitchCase="'pending'">
+                <ion-item *ngFor="let request of pending_requests" (click)="goToRequest(request)">
+                  <ion-avatar item-left>
+                      <img [src]="request.tasker.image">
+                    </ion-avatar>
+                  <p> <b style="color: black;">  {{request.subcategory.title}} </b>  {{request.created_at}}  </p>
 
-        </ion-list>
+                  <p>
+                    <ion-icon name="ios-star" ></ion-icon>
+                    <ion-icon name="ios-star" ></ion-icon>
+                    <ion-icon name="ios-star" ></ion-icon>
+                    <ion-icon name="ios-star" ></ion-icon>
+                    <ion-icon name="ios-star" ></ion-icon>
+                  </p>
+                  <b style="color: black;  text-align: right;" item-right>  {{request.id}} </b>
 
-        <ion-list  *ngSwitchCase="'quoted'">
-          <ion-item *ngFor="let request of requests" >
-            <ion-avatar item-left>
-                <img [src]="request.img">
-              </ion-avatar>
-            <p> <b style="color: black;">  {{request.name}} </b>  {{request.date}}  </p>
-        
-            <p>
-              <ion-icon name="ios-star" ></ion-icon>
-              <ion-icon name="ios-star" ></ion-icon>
-              <ion-icon name="ios-star" ></ion-icon>
-              <ion-icon name="ios-star" ></ion-icon>
-              <ion-icon name="ios-star" ></ion-icon>
-            </p>
-            <b style="color: black;  text-align: right;" item-right>  {{request.reqid}} </b>
-              
-          
-          
-            <button ion-button clear item-right >
-              <ion-icon name="ios-arrow-forward" ></ion-icon>
-            </button>
-          </ion-item>
 
-        </ion-list>
 
+                  <button ion-button clear item-right  >
+                    <ion-icon name="ios-arrow-forward" ></ion-icon>
+                  </button>
+                </ion-item>
+
+              </ion-list>
 
         <ion-list  *ngSwitchCase="'booked'">
-          <ion-item *ngFor="let request of requests" >
-            <ion-avatar item-left>
-                <img [src]="request.img">
-              </ion-avatar>
-            <p> <b style="color: black;">  {{request.name}} </b>  {{request.date}}  </p>
-        
-            <p>
-              <ion-icon name="ios-star" ></ion-icon>
-              <ion-icon name="ios-star" ></ion-icon>
-              <ion-icon name="ios-star" ></ion-icon>
-              <ion-icon name="ios-star" ></ion-icon>
-              <ion-icon name="ios-star" ></ion-icon>
-            </p>
-            <b style="color: black;  text-align: right;" item-right>  {{request.reqid}} </b>
-              
-          
-          
-            <button ion-button clear item-right >
-              <ion-icon name="ios-arrow-forward" ></ion-icon>
-            </button>
-          </ion-item>
+            <ion-item *ngFor="let request of booked_requests" (click)="goToRequest(request)" >
+                <ion-avatar item-left>
+                    <img [src]="request.tasker.image">
+                </ion-avatar>
+                <p> <b style="color: black;">  {{request.subcategory.title}} </b>  {{request.created_at}}  </p>
+
+                <p>
+                    <ion-icon name="ios-star" ></ion-icon>
+                    <ion-icon name="ios-star" ></ion-icon>
+                    <ion-icon name="ios-star" ></ion-icon>
+                    <ion-icon name="ios-star" ></ion-icon>
+                    <ion-icon name="ios-star" ></ion-icon>
+                </p>
+                <b style="color: black;  text-align: right;" item-right>  {{request.id}} </b>
+
+
+
+                <button ion-button clear item-right  >
+                    <ion-icon name="ios-arrow-forward" ></ion-icon>
+                </button>
+            </ion-item>
 
         </ion-list>
+
+        <ion-list  *ngSwitchCase="'finshed'">
+            <ion-item *ngFor="let request of finshed_requests" (click)="goToRequest(request)" >
+                <ion-avatar item-left>
+                    <img [src]="request.tasker.image">
+                </ion-avatar>
+                <p> <b style="color: black;">  {{request.subcategory.title}} </b>  {{request.created_at}}  </p>
+
+                <p>
+                    <ion-icon name="ios-star" ></ion-icon>
+                    <ion-icon name="ios-star" ></ion-icon>
+                    <ion-icon name="ios-star" ></ion-icon>
+                    <ion-icon name="ios-star" ></ion-icon>
+                    <ion-icon name="ios-star" ></ion-icon>
+                </p>
+                <b style="color: black;  text-align: right;" item-right>  {{request.id}} </b>
+
+
+
+                <button ion-button clear item-right>
+                    <ion-icon name="ios-arrow-forward" ></ion-icon>
+                </button>
+            </ion-item>
+
+    </ion-list>
 
   </div>
 </ion-content>

@@ -1,6 +1,7 @@
+
 <ion-header>
     <ion-navbar color="primary">
-         <button ion-button menuToggle>
+        <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
         <ion-title>My Location</ion-title>
@@ -10,6 +11,13 @@
             </button>
         </ion-buttons>
     </ion-navbar>
+    <ion-toolbar no-border-top >
+        <ion-searchbar
+                [(ngModel)]="queryText"
+                (ionInput)="search()"
+                placeholder="Search">
+        </ion-searchbar>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content class="map-page" padding>
@@ -51,6 +59,13 @@
             </sebm-google-map-info-window>
         </sebm-google-map-marker>
     </sebm-google-map>
+    <ion-list>
+        <ion-list-header class="header-title"> Any Other Details ? </ion-list-header>
+        <ion-item >
+            <ion-textarea [(ngModel)]="map.description"></ion-textarea>
+        </ion-item>
+
+    </ion-list>
     <button ion-button block type="submit"  (click)="getWorker()" >Continue ... </button>
 
 

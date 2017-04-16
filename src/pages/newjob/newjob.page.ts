@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { NavController,NavParams,LoadingController } from 'ionic-angular';
 import { NafeerApi } from '../../shared/shared';
 import { Home,SubCategories,Quetions } from '../page';
-import _ from 'lodash';
 
 
 @Component({
@@ -43,18 +42,15 @@ export class NewJob {
     this.tab = 1;
     let queryTextLower = this.queryText.toLowerCase();
 
-    let filteredsubcategories = [];
-    
-    _.forEach(this.nafeerApi.getSubCategories(), td => {
-      
-      let category = _.filter(td,t => td.title.toLowerCase().includes(queryTextLower) );
-      
-      if (category.length) {
-        filteredsubcategories.push(td);
-      }
-    });
+      let loader = this.loadingController.create({
+          content: 'Loading data...'
+      });
 
-    this.subcategories = filteredsubcategories;
+      loader.present().then(() => {
+          this.subcategories = this.nafeerApi.searchsubcategories(queryTextLower);
+          loader.dismiss();
+
+      });
   }
   goSubCategory(category){ 
     this.navCtrl.push(SubCategories,category);

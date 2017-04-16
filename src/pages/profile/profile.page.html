@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{tasker.name}} profile</ion-title>
+    <ion-title>{{tasker.first_name}} profile</ion-title>
    <ion-buttons end>
             <button ion-button icon-only (click)="goHome()">
                 <ion-icon name="home"></ion-icon>
@@ -51,9 +51,9 @@
             <ion-slide >
               <div class="fix-div">
               <div>
-                <img  id="profile-image" [src]="tasker.img">
+                <img  id="profile-image" [src]="tasker.image">
               </div>
-              <h2 class="profile-name dark">{{tasker.name}}</h2>
+              <h2 class="profile-name dark">{{tasker.first_name}}</h2>
               <div class="profile-info">{{tasker.title}}</div>
               </div>
             </ion-slide>
@@ -115,15 +115,15 @@
 
       </div>
         <div *ngSwitchCase="'review'" >
-               <ion-fab bottom right color="secondary"  (click)="addReview()">
+               <ion-fab top right color="secondary"  (click)="addReview()">
                 <button ion-fab mini color="secondary" class="fab-button"><ion-icon name="add"></ion-icon></button>
             </ion-fab>
               <ion-list>
-              <ion-item *ngFor="let reviewer of reviewers" dir="rtl">
+              <ion-item *ngFor="let reviewer of reviewers" >
                 <ion-avatar item-left>
-                    <img [src]="reviewer.img">
+                    <img [src]="reviewer.customer.image">
                   </ion-avatar>
-                <h2>{{reviewer.name}}</h2>
+                <h2>{{reviewer.customer.first_name}}</h2>
                 <p>
                   <ion-icon name="ios-star" ></ion-icon>
                   <ion-icon name="ios-star" ></ion-icon>
@@ -131,7 +131,7 @@
                   <ion-icon name="ios-star" ></ion-icon>
                   <ion-icon name="ios-star" ></ion-icon>
                   </p>
-                  <p class="truncate">{{reviewer.mesg}}</p>
+                  <p class="truncate">{{reviewer.comment}}</p>
               
                 <button ion-button clear item-right >
                   <ion-icon name="ios-arrow-forward" ></ion-icon>

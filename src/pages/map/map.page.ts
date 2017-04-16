@@ -18,8 +18,11 @@ export class MapPage {
 
   map: any;
   address:any;
+  queryText = '';
+  location:any;
 
-  constructor(public loadingController: LoadingController,public navCtrl: NavController ,public navParams: NavParams, public nafeerApi: NafeerApi, private modalCtrl: ModalController) {
+
+    constructor(public loadingController: LoadingController,public navCtrl: NavController ,public navParams: NavParams, public nafeerApi: NafeerApi, private modalCtrl: ModalController) {
       this.map = this.navParams.get('map');
       //this.map = this.navParams.get('subcat');
        this.address = {
@@ -55,10 +58,24 @@ export class MapPage {
   }
   getWorker()
   {
-    this.navCtrl.push(ChooseWorker,this.navParams.get('subcat'));
+    this.navCtrl.push(ChooseWorker,{ map:this.map, subcat:this.navParams.get('subcat') });
   }
   goHome(){
     this.navCtrl.setRoot(Home);
   }
+    search() {
+        let queryTextLower = this.queryText.toLowerCase();
+
+        let loader = this.loadingController.create({
+            content: 'Loading data...'
+        });
+
+        loader.present().then(() => {
+            this.location = this.nafeerApi.searchLocation(queryTextLower);
+            console.log(this.location);
+            loader.dismiss();
+
+        });
+    }
 
 }

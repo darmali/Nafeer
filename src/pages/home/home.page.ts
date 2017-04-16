@@ -35,7 +35,13 @@ export class Home {
     });
 
     loader.present().then(() => {
-      this.categories =this.nafeerApi.getCategories();
+      // this.categories =this.nafeerApi.getCategories();
+      var response = this.nafeerApi.getCategories();
+      if(response){
+        response.subscribe(res=>{
+          this.categories = res.data;
+        });
+      }
       loader.dismiss();
 
     });

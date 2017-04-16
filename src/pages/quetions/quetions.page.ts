@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 import { NavController,NavParams,LoadingController,AlertController } from 'ionic-angular';
 import { ImagePicker,Camera,Geolocation } from 'ionic-native';
 import { Home,MapPage } from '../page';
-import { NafeerApi } from '../../shared/shared';
-// import _ from 'lodash';
+import { NafeerApi,ItemsDesc } from '../../shared/shared';
+import _ from 'lodash';
 import 'rxjs/add/operator/map';
 
 
@@ -19,9 +19,13 @@ export class Quetions {
   quetions = [];
   pages = [];
   items = [];
+  itemsdesc =[];
   subcategory: any;
   map:any;
-  
+  item1:any;
+  item2:any;
+  item3:any;
+
   constructor(public alertCtrl: AlertController,public loadingController: LoadingController,public navCtrl: NavController , public navParams: NavParams,public nafeerApi: NafeerApi) {
     this.subcategory = this.navParams.data;
   }
@@ -93,6 +97,39 @@ export class Quetions {
   }
   goToMap()
   {
+    _.forEach(this.quetions, td => {
+       // console.log(td);
+       if(td.tasktype_id == 2)
+       {
+         _.forEach(td.items,item => {
+           //console.log(item);
+
+           if(td.value == item.name)
+           {
+             var res = new ItemsDesc(item.id,td.id,true);
+           }
+           else
+           {
+             var res = new ItemsDesc(item.id,td.id,false);
+           }
+           this.itemsdesc.push(res);
+         });
+       }
+      if(td.tasktype_id == 1) {
+         _.forEach(td.items,item => {
+           //console.log(item);
+           var res = new ItemsDesc(item.id,td.id,item.ischecked);
+           this.itemsdesc.push(res);
+         });
+       }
+
+
+    });
+    // console.log(this.itemsdesc);
+    let category =_.uniqBy(this.itemsdesc, 'task_id');
+    // console.log(category);
+
+
     let loader = this.loadingController.create({
       content: ''
     });
@@ -104,9 +141,12 @@ export class Quetions {
         lat: resp.coords.latitude,
         lng: resp.coords.longitude,
         zoom: 15,
-        markerLabel: "My Location" 
+        markerLabel: "My Location" ,
+        description: "",
+        tasker_id:"",
+        items:this.itemsdesc
       };
-      console.log(this.map);
+      // console.log(this.map);
       this.navCtrl.push(MapPage,{ map:this.map, subcat:this.subcategory });
       loader.dismiss();
       

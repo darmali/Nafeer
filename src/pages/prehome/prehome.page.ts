@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav,NavController } from 'ionic-angular';
+import { Nav,NavController,NavParams,Platform } from 'ionic-angular';
 import {TranslateService} from 'ng2-translate';
 import { NewJob,JobRequests,Inbox,RateUs,Settings,Home,Login } from '../page';
-import { AuthService } from '../../shared/shared';
+import { AuthService,User,NafeerApi } from '../../shared/shared';
+import {SQLite} from "ionic-native";
 
 
 @Component({
@@ -14,12 +15,23 @@ export class PreHome {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = Home;
-
+  currentuser:User;
+  public database: SQLite;
+  public user: Array<Object>;
   pages: Array<{title: string,icon: string, component: any}>;
 
-  constructor(public navctl: NavController,translate: TranslateService,public auth: AuthService) {
-    // let info = auth.getUserInfo();
+  constructor(private platform:Platform,public navctl: NavController,translate: TranslateService,public navParams: NavParams, public auth: AuthService,private nafeerapi:NafeerApi) {
+    this.platform.ready().then(() => {
+      this.database = new SQLite();
+      this.database.openDatabase({name: "data.db", location: "default"}).then(() => {
+        this.refresh();
+      }, (error) => {
+        console.log("ERROR: ", error);
+      });
+    });
 
+    this.currentuser = this.nafeerapi.currentUser;
+    console.log( "what the heck ? "+this.user );
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'New Job',icon: 'ios-add-circle', component: NewJob },
@@ -28,7 +40,11 @@ export class PreHome {
       { title: 'Rate Us',icon: 'ios-star', component: RateUs },
       { title: 'Settings',icon: 'ios-settings', component: Settings },
     ];
-   
+
+  }
+  ionViewDidLoad() {
+    console.log(this.auth.currentUser);
+    this.currentuser = this.auth.currentUser;
   }
 
   openPage(page) {
@@ -39,6 +55,20 @@ export class PreHome {
   public logout() {
     this.auth.logout().subscribe(succ => {
         this.navctl.setRoot(Login)
+    });
+  }
+
+  public refresh() {
+    this.database.executeSql("SELECT * FROM user", []).then((data) => {
+      this.user = [];
+      if(data.rows.length > 0) {
+        for(var i = 0; i < data.rows.length; i++) {
+          var obj = new User(data.rows.item(i).id,data.rows.item(i).first_name,data.rows.item(i).last_name,data.rows.item(i).phone,data.rows.item(i).email,data.rows.item(i).usertype);
+          this.user.push(obj);
+        }
+      }
+    }, (error) => {
+      console.log("ERROR: " + JSON.stringify(error));
     });
   }
 }

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
-import { NavController,NavParams,LoadingController } from 'ionic-angular';
+import { NavController,NavParams,LoadingController,AlertController } from 'ionic-angular';
 import { Home,Profile,ChatPage } from '../page';
 import { NafeerApi } from '../../shared/shared';
+import _ from 'lodash';
+
 
 
 @Component({
@@ -11,12 +13,13 @@ import { NafeerApi } from '../../shared/shared';
 })
 export class ChooseWorker {
 
- taskers:any;
+ taskers:any =[];
  sliderOptions: any;
  subcat:any;
  inbox=[];
-  constructor(public loadingController: LoadingController,public navCtrl: NavController , public navParams: NavParams,public nafeerApi: NafeerApi) {
-    this.subcat = this.navParams.data;
+ createSuccess = false;
+  constructor(public loadingController: LoadingController,public navCtrl: NavController , public navParams: NavParams,public nafeerApi: NafeerApi,private alertCtrl: AlertController) {
+    this.subcat = this.navParams.get('subcat');
      this.sliderOptions = {
       pager: true
     };
@@ -28,7 +31,16 @@ export class ChooseWorker {
     });
 
     loader.present().then(() => {
-      this.taskers =  this.nafeerApi.getTaskers();
+      // this.taskers =  this.nafeerApi.getTaskers();
+      var response = this.nafeerApi.getAvalibaleTaskers(this.subcat.id);
+        if(response){
+            response.subscribe(res=>{
+                _.forEach(res, td => {
+                    this.taskers.push(td);
+                });
+
+            });
+        }
       this.inbox =  this.nafeerApi.getInbox();
       loader.dismiss();
 
@@ -49,6 +61,37 @@ export class ChooseWorker {
     });
   }
 
+  hirehim(tasker)
+  {
+      let loader = this.loadingController.create({
+          content: 'Loading data...'
+      });
+
+      loader.present().then(() => {
+          // this.taskers =  this.nafeerApi.getTaskers();
+          var request = this.navParams.get('map');
+          request.tasker_id = tasker.id;
+          var response = this.nafeerApi.createRequest(request);
+          if(response){
+              response.subscribe(res=>{
+                  if (res) {
+                      this.createSuccess = true;
+                      this.showPopup("Success", "Request created.");
+                      this.goHome();
+                  }else {
+                      this.showPopup("Error", "Access Denied");
+
+                  }
+              },error => {
+                  this.showPopup("Error", error);
+              });
+          }
+          this.inbox =  this.nafeerApi.getInbox();
+          loader.dismiss();
+
+      });
+  }
+
   goToProfile(tasker)
   {
     this.navCtrl.push(Profile,tasker);
@@ -59,5 +102,24 @@ export class ChooseWorker {
     chat = this.inbox.filter(a => a.id == tasker.id)[0];
     this.navCtrl.push(ChatPage,chat);
   }
+
+    showPopup(title, text) {
+        let alert = this.alertCtrl.create({
+            title: title,
+            subTitle: text,
+            buttons: [
+                {
+                    text: 'OK',
+                    handler: data => {
+                        if (this.createSuccess) {
+                           // this.nav.popToRoot();
+                        }
+                    }
+                }
+            ]
+        });
+
+        alert.present();
+    }
 
 }

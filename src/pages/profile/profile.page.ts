@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { NavController,NavParams,LoadingController,AlertController } from 'ionic-angular';
 import { Home } from '../page';
 import { NafeerApi } from '../../shared/shared';
+import _ from 'lodash';
+
 
 @Component({
   selector: 'profile-page',
@@ -12,7 +14,7 @@ export class Profile {
 
   tasker:any;
   profilestatus='profile';
-  reviewers:any;
+  reviewers:any =[];
 
   constructor(private alertCtrl:AlertController, public loadingController: LoadingController,public navCtrl: NavController , public navParams: NavParams,public nafeerApi: NafeerApi) {
     this.tasker = this.navParams.data;
@@ -25,7 +27,18 @@ export class Profile {
 
     loader.present().then(() => {
       // this.category = this.navParams.data;
-      this.reviewers =  this.nafeerApi.getReviewers();
+      // this.reviewers =  this.nafeerApi.getReviewers();
+        var response = this.nafeerApi.getReviews(this.tasker.id);
+        if(response){
+            response.subscribe(res=>{
+                _.forEach(res, td => {
+
+                    this.reviewers.push(td);
+
+                });
+
+            });
+        }
       // .filter((question) => {return (question.id === this.subcategory.questionid );});
       loader.dismiss();
 
